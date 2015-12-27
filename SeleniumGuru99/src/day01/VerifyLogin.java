@@ -1,4 +1,4 @@
-package guru99bank;
+package day01;
 
 import java.util.concurrent.TimeUnit;
 
@@ -6,15 +6,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class LoginExample {
+public class VerifyLogin {
 
 	/**
 	 * @param args
 	 * @throws InterruptedException 
 	 */
-	
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
+		
 
 		Util utl = new Util();
 		String uname = utl.username;
@@ -31,6 +31,7 @@ public class LoginExample {
 		//driver.close();
 		//driver.quit();
 	
+
 	}
 
 }
