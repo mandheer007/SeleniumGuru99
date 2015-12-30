@@ -18,7 +18,7 @@ public class VerfiyLoginWithOuput {
 	 * @param args
 	 * @throws InterruptedException 
 	 */
-	public void ffProfile(String uname, String pass, String url, String ffpath) 
+	public void ffProfile(String uname, String pass, String url, String ffpath, int iwait) 
 	{
 		FirefoxProfile profile = new FirefoxProfile();
 		
@@ -30,7 +30,7 @@ public class VerfiyLoginWithOuput {
 		String actualTittle = "Guru99 Bank Manager HomePage";
 
 		//Thread.sleep(1000L);
-		driver.manage().timeouts().implicitlyWait(1000L,TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(iwait,TimeUnit.SECONDS);
 		
 		driver.findElement(By.name("uid")).sendKeys(uname);
 		driver.findElement(By.name("password")).sendKeys(pass);
@@ -40,8 +40,14 @@ public class VerfiyLoginWithOuput {
 
 		System.out.println(expectedTittle);
 
-		Assert.assertEquals(actualTittle, expectedTittle);
-		
+		if(actualTittle == expectedTittle)
+		{
+			System.out.println("Test case: Passed");
+		}
+		else
+		{
+			System.out.println("Test case: Failed");
+		}	
 		
 	}
 	
@@ -54,14 +60,12 @@ public class VerfiyLoginWithOuput {
 		String psswd = utl.password;
 		String url = utl.baseUrl;
 		String ffpath = utl.firfoxpath;
+		int iwait = utl.impwait;
 
 		VerfiyLoginWithOuput vf = new VerfiyLoginWithOuput();
-		
-		vf.ffProfile(uname, psswd, url, ffpath);
-		
+		vf.ffProfile(uname, psswd, url, ffpath, iwait);
 	
 	}
-
 }
 
 
