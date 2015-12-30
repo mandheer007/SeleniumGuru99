@@ -40,7 +40,7 @@ public class VerfiyLoginWithOuput {
 
 		System.out.println(expectedTittle);
 
-		if(actualTittle == expectedTittle)
+		if(actualTittle.equals(expectedTittle))
 		{
 			System.out.println("Test case: Passed");
 		}
