@@ -1,6 +1,7 @@
 package day04;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
@@ -45,14 +46,14 @@ public class VerifyExcelDataUsingTestNG
 		driver.get(baseUrl + "/V4/");
   }
   
-  @Test(priority = 3)
-  public void verifyHomwPageTittle()
-  {
-	    expected = Util.EXPECT_TITLE;
-	    actual = driver.getTitle();
-	    System.out.println(actual);
-	    Assert.assertEquals(actual, expected);
-  }
+//  @Test(priority = 3)
+//  public void verifyHomwPageTittle()
+//  {
+//	    expected = Util.EXPECT_TITLE;
+//	    actual = driver.getTitle();
+//	    System.out.println(actual);
+//	    Assert.assertEquals(actual, expected);
+//  }
 
   @Test(priority = 1)
   public void launchApplication() throws Exception
@@ -60,6 +61,17 @@ public class VerifyExcelDataUsingTestNG
 	     String[][] testData = 
 			Util.getDataFromExcel(Util.FILE_PATH,Util.SHEET_NAME, Util.TABLE_NAME);
  
+	     System.out.println(Arrays.deepToString(testData));
+	     
+//	     for(int i = 0; i < testData.length; i++)
+//	     {
+//	    	 System.out.println(testData[0][0]);
+//	    	 if((testData[0][0]).equals("mngr26059"))
+//	    		 break;
+//	    	 else
+//	    		 System.out.println("in else block");
+//	     }
+	     
   	for (int i = 0; i < testData.length; i++) 
   	{
   	    username = testData[i][0]; 
@@ -80,15 +92,21 @@ public class VerifyExcelDataUsingTestNG
   	  try
       { 
        	Alert alt = driver.switchTo().alert();
-		actualBoxtitle = alt.getText();
-		System.out.println(actualBoxtitle);
-		//Thread.sleep(2000);
-		alt.accept();
+       	
+       	//System.out.println("....."+alt);
+       	
+       	if(alt != null)
+       	{
+       		actualBoxtitle = alt.getText();
+       		System.out.println(actualBoxtitle);
+       		Thread.sleep(2000);
+       		alt.accept();
 		
-		if (actualBoxtitle.contains(Util.EXPECT_ERROR)) 
-		    System.out.println("Test case SS[" + i + "]: Passed"); 
-		else 
-		    System.out.println("Test case SS[" + i + "]: Failed");
+			if (actualBoxtitle.contains(Util.EXPECT_ERROR)) 
+			    System.out.println("Test case SS[" + i + "]: Passed"); 
+			else 
+			    System.out.println("Test case SS[" + i + "]: Failed");
+       	}
 	   }    
        catch (NoAlertPresentException Ex)
        { 
@@ -101,7 +119,11 @@ public class VerifyExcelDataUsingTestNG
 		    System.out.println("Test case SS[" + i + "]: Failed");
 		
        }
+  	  
+//   	 if((testData[0][0]).equals("mngr26059"))
+//		 break;
   	}
+
   }
   
     @AfterTest

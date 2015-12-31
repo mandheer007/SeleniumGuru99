@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="day04.VerifyExcelDataUsingTestNG">
+      <class name="day06.ScreenShotOutput">
         <methods>
           <include name="terminateBrowser"/>
-          <include name="verifyHomwPageTittle"/>
           <include name="launchApplication"/>
+          <include name="takeScreenShot"/>
         </methods>
-      </class> <!-- day04.VerifyExcelDataUsingTestNG -->
+      </class> <!-- day06.ScreenShotOutput -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
